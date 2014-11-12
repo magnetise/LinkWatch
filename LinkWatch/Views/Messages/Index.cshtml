@@ -1,0 +1,55 @@
+﻿@model magneti.se.client.SmsMessage
+@{
+    ViewBag.Title = "Send Message";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row-fluid">
+    <div class="span8 offset2 well">
+        @using (Html.BeginForm("Index", "Messages", FormMethod.Post, new { @class = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="control-group">
+                <label class="control-label" for="From">From</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.From)
+                    @Html.ValidationMessageFor(m => m.From)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="To">To</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.To)
+                    @Html.ValidationMessageFor(m => m.To)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="Tags">Tags</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Tags)
+                    @Html.ValidationMessageFor(m => m.Tags)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="Message">Message</label>
+                <div class="controls">
+                    @Html.TextAreaFor(m => m.Message)
+                    @Html.ValidationMessageFor(m => m.Message)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-success">Send</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

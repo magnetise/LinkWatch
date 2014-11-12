@@ -1,0 +1,20 @@
+﻿@model magneti.se.client.ApiResponse
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row-fluid">
+    <div class="span8 offset2 well">
+        <p>To: @Model.To</p>
+        <p>From: @Model.From</p>
+        <p>Message: @Model.Message</p>
+        <p>Received: @Model.Received</p>
+        <p>Live: @Model.Live</p>
+        <p>MessageId: @Model.MessageId</p>
+        <p>Tags: @Model.Tags</p>
+        <p>Cost: @Model.Cost</p>
+    </div>
+</div>
+
