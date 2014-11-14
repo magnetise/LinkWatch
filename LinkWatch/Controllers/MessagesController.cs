@@ -20,13 +20,27 @@ namespace LinkWatch.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(SmsMessage message)
+        public ActionResult Index(string from, string to, string tags, string message)
         {
-            var response = client.Send(message);
+            var response = client.Send(new SmsMessage
+                {
+                    From = from,
+                    To = to,
+                    Tags = tags,
+                    Message = message
+                });
             return View("Sent",response);
         }
 
-        public ActionResult Callback(RedirectCallback callback)
+        
+    }
+
+    public class CallbackController : Controller
+    {
+        readonly Magnetise client = new Magnetise();
+
+        [HttpPost]
+        public ActionResult Index(RedirectCallback callback)
         {
             client.Send(new SmsMessage
             {
