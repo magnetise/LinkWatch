@@ -31,8 +31,6 @@ namespace LinkWatch.Controllers
                 });
             return View("Sent",response);
         }
-
-        
     }
 
     public class CallbackController : Controller

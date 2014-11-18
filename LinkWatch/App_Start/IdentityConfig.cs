@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using magneti.se.client;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -27,7 +29,15 @@ namespace LinkWatch
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your SMS service here to send a text message.
+            var magnetise = new Magnetise();
+            var result = magnetise.Send(new SmsMessage
+                {
+                    From = "Your App",
+                    Message = message.Body,
+                    To = message.Destination,
+                    Tags = "auth"
+                });
+
             return Task.FromResult(0);
         }
     }
